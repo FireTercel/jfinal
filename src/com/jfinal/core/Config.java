@@ -26,7 +26,7 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
 
-class Config {
+class Config {//保存JFinalConfig配置信息的类
 	
 	private static final Constants constants = new Constants();
 	private static final Routes routes = new Routes(){public void config() {}};

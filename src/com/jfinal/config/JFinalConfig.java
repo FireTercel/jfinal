@@ -27,7 +27,7 @@ import com.jfinal.kit.PropKit;
  * <p>
  * Config order: configConstant(), configRoute(), configPlugin(), configInterceptor(), configHandler()
  */
-public abstract class JFinalConfig {
+public abstract class JFinalConfig {//面向开发者
 	
 	/**
 	 * Config constant

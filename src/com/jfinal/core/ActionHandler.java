@@ -42,9 +42,9 @@ final class ActionHandler extends Handler {
 	}
 	
 	/**
-	 * handle
-	 * 1: Action action = actionMapping.getAction(target)
-	 * 2: new Invocation(...).invoke()
+	 * handle<br>
+	 * 1: Action action = actionMapping.getAction(target)<br>
+	 * 2: new Invocation(...).invoke()<br>
 	 * 3: render(...)
 	 */
 	public final void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {

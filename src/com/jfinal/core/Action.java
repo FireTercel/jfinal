@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 import com.jfinal.aop.Interceptor;
 
 /**
- * Action
+ * Action 包括控制器class、controllerKey、actionKey、方法method、方法名、拦截器组、页面路径
  */
 public class Action {
 	

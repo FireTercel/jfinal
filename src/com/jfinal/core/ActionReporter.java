@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.jfinal.aop.Interceptor;
 
 /**
- * ActionReporter
+ * ActionReporter 打印控制台信息
  */
 final class ActionReporter {
 	

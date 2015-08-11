@@ -31,17 +31,17 @@ import com.jfinal.handler.Handler;
 import com.jfinal.log.Logger;
 
 /**
- * JFinal framework filter
+ * JFinal framework filter框架过滤器，配置于xml文件，每个请求都过滤。
  */
 public final class JFinalFilter implements Filter {
 	
-	private Handler handler;
+	private Handler handler;//处理器
 	private String encoding;
-	private JFinalConfig jfinalConfig;
-	private Constants constants;
-	private static final JFinal jfinal = JFinal.me();
+	private JFinalConfig jfinalConfig;//配置类，自定义配置类继承自该类
+	private Constants constants;//常量
+	private static final JFinal jfinal = JFinal.me();//初始化配置类的一系列设置。
 	private static Logger log;
-	private int contextPathLength;
+	private int contextPathLength;//用于截取url，获取action和params
 	
 	public void init(FilterConfig filterConfig) throws ServletException {
 		createJFinalConfig(filterConfig.getInitParameter("configClass"));

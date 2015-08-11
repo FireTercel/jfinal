@@ -24,7 +24,7 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Clear;
 
 /**
- * ActionInterceptorBuilder
+ * ActionInterceptorBuilder 使用before创建，clear清除：method上面的拦截器
  */
 class ActionInterceptorBuilder {
 	
@@ -106,7 +106,7 @@ class ActionInterceptorBuilder {
 	}
 	
 	/**
-	 * Create Interceptors with Annotation of Before. Singleton version.
+	 * Create Interceptors with Annotation of Before. Singleton version. 获得before的参数（拦截器组）
 	 */
 	private Interceptor[] createInterceptors(Before beforeAnnotation) {
 		if (beforeAnnotation == null)

@@ -41,7 +41,7 @@ import com.jfinal.upload.UploadFile;
  * <br>
  * 昨夜西风凋碧树。独上高楼，望尽天涯路。<br>
  * 衣带渐宽终不悔，为伊消得人憔悴。<br>
- * 众里寻她千百度，蓦然回首，那人却在灯火阑珊处。
+ * 众里寻她千百度，蓦然回首，那人却在灯火阑珊处。<br>封装了request和response
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public abstract class Controller {
@@ -510,7 +510,7 @@ public abstract class Controller {
 	}
 	
 	/**
-	 * Set Cookie to response.
+	 * Set Cookie to response. 将coolie设置到响应中发送给用户。
 	 * @param name cookie name
 	 * @param value cookie value
 	 * @param maxAgeInSeconds -1: clear cookie when close browser. 0: clear cookie immediately.  n>0 : max age in n seconds.

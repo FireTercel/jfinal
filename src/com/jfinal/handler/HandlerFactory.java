@@ -34,8 +34,8 @@ public class HandlerFactory {
 		Handler result = actionHandler;
 		
 		for (int i=handlerList.size()-1; i>=0; i--) {
-			Handler temp = handlerList.get(i);
-			temp.nextHandler = result;
+			Handler temp = handlerList.get(i);//temp为handlerList最后一个值。
+			temp.nextHandler = result;//第一个result为参数给的。最后一个的下一个指向参数
 			result = temp;
 		}
 		

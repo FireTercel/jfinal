@@ -31,7 +31,7 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.Routes;
 
 /**
- * ActionMapping
+ * ActionMapping action、controller和method的拦截器
  */
 final class ActionMapping {
 	
@@ -46,6 +46,10 @@ final class ActionMapping {
 		this.interceptors = interceptors;
 	}
 	
+	/**
+	 * 获取控制器中没有参数的方法。
+	 * @return
+	 */
 	private Set<String> buildExcludedMethodName() {
 		Set<String> excludedMethodName = new HashSet<String>();
 		Method[] methods = Controller.class.getMethods();
@@ -56,18 +60,18 @@ final class ActionMapping {
 		return excludedMethodName;
 	}
 	
-	void buildActionMapping() {
+	void buildActionMapping() {//设置映射关系，包括拦截器设置。
 		mapping.clear();
 		Set<String> excludedMethodName = buildExcludedMethodName();
 		ActionInterceptorBuilder interceptorBuilder = new ActionInterceptorBuilder();
-		Interceptor[] globalInters = interceptors.getGlobalActionInterceptor();
+		Interceptor[] globalInters = interceptors.getGlobalActionInterceptor();//全局拦截器
 		interceptorBuilder.addToInterceptorsMap(globalInters);
-		for (Entry<String, Class<? extends Controller>> entry : routes.getEntrySet()) {
-			Class<? extends Controller> controllerClass = entry.getValue();
-			Interceptor[] controllerInters = interceptorBuilder.buildControllerInterceptors(controllerClass);
+		for (Entry<String, Class<? extends Controller>> entry : routes.getEntrySet()) {//所有路径
+			Class<? extends Controller> controllerClass = entry.getValue();//循环获得controller
+			Interceptor[] controllerInters = interceptorBuilder.buildControllerInterceptors(controllerClass);//该controller的拦截器
 			
-			boolean sonOfController = (controllerClass.getSuperclass() == Controller.class);
-			Method[] methods = (sonOfController ? controllerClass.getDeclaredMethods() : controllerClass.getMethods());
+			boolean sonOfController = (controllerClass.getSuperclass() == Controller.class);//controller父类
+			Method[] methods = (sonOfController ? controllerClass.getDeclaredMethods() : controllerClass.getMethods());//存在父类则获得该子类方法
 			for (Method method : methods) {
 				String methodName = method.getName();
 				if (excludedMethodName.contains(methodName) || method.getParameterTypes().length != 0)
@@ -89,7 +93,7 @@ final class ActionMapping {
 					if (!actionKey.startsWith(SLASH))
 						actionKey = SLASH + actionKey;
 				}
-				else if (methodName.equals("index")) {
+				else if (methodName.equals("index")) {//当方法名为index时，actionKey为controllerKey
 					actionKey = controllerKey;
 				}
 				else {
@@ -120,12 +124,12 @@ final class ActionMapping {
 	}
 	
 	/**
-	 * Support four types of url
-	 * 1: http://abc.com/controllerKey                 ---> 00
-	 * 2: http://abc.com/controllerKey/para            ---> 01
-	 * 3: http://abc.com/controllerKey/method          ---> 10
-	 * 4: http://abc.com/controllerKey/method/para     ---> 11
-	 * The controllerKey can also contains "/"
+	 * Support four types of url<br>
+	 * 1: http://abc.com/controllerKey                 ---> 00<br>
+	 * 2: http://abc.com/controllerKey/para            ---> 01<br>
+	 * 3: http://abc.com/controllerKey/method          ---> 10<br>
+	 * 4: http://abc.com/controllerKey/method/para     ---> 11<br>
+	 * The controllerKey can also contains "/"<br>
 	 * Example: http://abc.com/uvw/xyz/method/para
 	 */
 	Action getAction(String url, String[] urlPara) {

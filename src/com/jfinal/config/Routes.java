@@ -27,8 +27,8 @@ import com.jfinal.core.Controller;
  */
 public abstract class Routes {
 	
-	private final Map<String, Class<? extends Controller>> map = new HashMap<String, Class<? extends Controller>>();
-	private final Map<String, String> viewPathMap = new HashMap<String, String>();
+	private final Map<String, Class<? extends Controller>> map = new HashMap<String, Class<? extends Controller>>();//存放actionKey和ControllerClass的映射表。
+	private final Map<String, String> viewPathMap = new HashMap<String, String>();//存放actionKey和view的映射表。
 	
 	/**
 	 * you must implement config method and use add method to config route
@@ -116,7 +116,7 @@ public abstract class Routes {
 		if (! baseViewPath.startsWith("/"))			// add prefix "/"
 			baseViewPath = "/" + baseViewPath;
 		
-		if (baseViewPath.endsWith("/"))				// remove "/" in the end of baseViewPath
+		if (baseViewPath.endsWith("/"))				// remove "/" in the end of baseViewPath 去除路径最后的‘/’
 			baseViewPath = baseViewPath.substring(0, baseViewPath.length() - 1);
 		
 		Routes.baseViewPath = baseViewPath;
